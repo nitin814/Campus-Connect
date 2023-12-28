@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=Gloock&family=Herr+Von+Muellerhoff&family=Montserrat:wght@100;200;300;400&family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Tilt+Neon&display=swap');
+
+:root {
+--main-color1: #673de6;
+--main-color2: #fc5185;
+--main-color3: rgba(0, 0, 0, 0.8);
+--text-color: #2f1c6a;
+--gerideant-color: linear-gradient(163deg, 
+        rgba(103, 61, 230, 0.9836309523809523) 23%, 
+        rgba(252, 81, 133, 1) 100%);
+--gerideant-color2: rgb(103, 61, 230);
+}
+
+* {
+font-family: 'Roboto', sans-serif;
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+outline: none;
+border: none;
+text-decoration: none;
+transition: .3s linear;
+}
+
+html {
+font-size: 62.5%;
+overflow-x: hidden;
+scroll-padding-top: 9rem;
+scroll-behavior: smooth;
+}
+
+.navbar
+{
+        width : 100%;
+        height : 80px;
+        position : fixed;
+        top : 0;
+        font-size: large;
+        font-family: 'Gloock', cursive !important;
+}
+
+.custom-button 
+{
+        font-size: 20px !important; /* Adjust the font size to your preference */
+        width: 120px; /* Adjust the width of the button */
+        height: 40px; /* Adjust the height of the button */
+}
+.form-inline
+{
+        margin-right: 5%;
+}
+.pp
+{
+        font-size: 30px !important;
+        font-family: 'Gloock', cursive;
+        color: #673de6;
+        margin-left: 2%;
+        padding-right: 5%;
+}
+.nav-link
+{
+        font-size: 20px !important;
+        font-family: 'Gloock', cursive;
+        color: #673de6;
+        margin-left: 2%;
+        padding-right: 5%;
+        width: 100%;
+}
+.circular-image {
+        border-radius: 50%;
+        overflow: hidden; /* Ensure the image is fully contained within the circle */
+        max-width: 55px; /* Set the maximum width of your circular image */
+        max-height: 55px; /* Set the maximum height of your circular image */
+        margin-right: 30px;
+      }
+.welcome
+{
+        font-size: 20px !important;
+        font-family: 'Gloock', cursive;
+        display: block; 
+        text-align: center;
+        margin: 0 auto;
+}
+html::-webkit-scrollbar {
+width: .8rem;
+}
+
+html::-webkit-scrollbar-track {
+background: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+background: var(--main-color1);
+}
+
+
+body {
+background: var(--main-color3);
+padding: 80px;
+}
+
+.team-box {
+width: 100%;
+height: 100%;
+}
+
+.team-box1 {
+background-color: #673de6;
+}
+
+.team-box2 {
+        background-color: #673de6;
+}
+
+.team-box3 {
+        background-color: #673de6;
+}
+
+.team-box4 {
+        background-color: #673de6;
+}
+
+.team-box5 {
+        background-color: #673de6;
+}
+
+
+.team-name {
+width: 100%;
+height: 100%;
+display: flex;
+align-items: center;
+justify-content: center;
+position: relative;
+}
+
+.team-name::before {
+content: "";
+width: 0;
+height: 0;
+position: absolute;
+top: 0;
+right: 0;
+bottom: 0;
+left: 0;
+transition: .5s;
+margin: auto;
+margin-top: 40px;
+border-radius: 10px;
+}
+
+.team-box1 .team-name::before {
+background-image: "../images/photo.jpeg";
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+}
+
+.team-box2 .team-name::before {
+background-image: url(team-img-2.png);
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+}
+
+.team-box3 .team-name::before {
+background-image: url(team-img-3.png);
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+}
+
+.team-box4 .team-name::before {
+background-image: url(team-img-4.png);
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+}
+
+.team-box5 .team-name::before {
+background-image: url(team-img-5.png);
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+}
+
+.team-name:hover::before {
+width: 60%;
+height: 60%;
+}
+
+.img {
+width: 70%;
+height: 50%;
+opacity: 0;
+z-index: 999999;
+}
+
+.team-name:hover {
+backdrop-filter: blur(10px);
+}
+
+.team-content {
+width: 100%;
+height: auto;
+margin-top: 350px;
+opacity: 0;
+}
+
+.team-content h2 {
+color: #fff;
+font-size: 25px;
+font-family: 'Montserrat', sans-serif;
+font-weight: 500;
+letter-spacing: .5px;
+text-transform: uppercase;
+text-decoration: underline;
+padding: 10px;
+}
+
+.team-content p {
+font-size: 15px;
+font-family: 'Montserrat', sans-serif;
+color: #fff;
+letter-spacing: .5px;
+}
+
+.team-content ion-icon {
+position: relative;
+font-size: 25px;
+padding: 10px;
+background: #fff;
+border-radius: 10px;
+margin: 10px 10px;
+cursor: pointer;
+}
+
+.team-name:hover .team-content {
+opacity: 1;
+}
+
+.custom-link {
+        display: inline-block !important; /* Make it a block element so you can set width and height */
+        width: 180px !important; /* Set the desired width */
+        height: 50px !important; /* Set the desired height */
+        font-size: 20px !important; /* Set the desired font size */
+        line-height: 38px !important; /* Center the text vertically */
+        text-align: center !important; /* Center the text horizontally */
+        /* Add any other styles you want */
+    }
+    
+    

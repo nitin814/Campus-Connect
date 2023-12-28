@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Rooms !</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <div>
+        <h4 class="pt-3 pl-3 ml-2">
+            Hello <%= username %>!    
+        </h4>
+        <h5 class="pb-3 pl-3 ml-2">
+            Create , join rooms and chat with your friends
+        </h5>
+    </div>
+    <div>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+            Create New Room
+        </button>
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">Create a room</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="/room" method="POST" novalidate class="validated-form">
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Room Name : </label>
+                            <input type="text" class="form-control" id="recipient-name" name="room[name]" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="col-form-label">Enter any Group Description</label>
+                            <textarea class="form-control" id="message-text" required name="room[description]"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" unchecked name="room[passwordstatus]">
+                                <label class="form-check-label" for="flexSwitchCheckDefault">Password Protected </label>
+                            </div>
+                            <div class="form-group" id="conditionalInput" style="display: none;">
+                                <label for="exampleInput">Enter Password:</label>
+                                <input type="text" class="form-control" id="exampleInput" placeholder="Enter password" name="room[password]" required>
+                            </div>
+                        </div>
+                        <!-- Add a hidden input field for method-override -->
+                        <input type="hidden" name="_method" value="POST">
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Create Room</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>    
+    <p>
+        <h2>Public Rooms</h2> 
+    </p>
+    <div class="row">
+        <% rooms.forEach(room => { %>
+            <% if (room.passwordProtected === false) { %>
+                <div class="card ml-4 mt-4" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= room.roomName %></h5>
+                        <p class="card-text"><%= room.description %></p>
+                            <button class="btn btn-primary" onclick="joinRoom('<%= room._id %>')">Join</button>
+                    </div>
+                </div>
+            <% } %>    
+        <% }) %>
+    </div>
+
+    <p>
+        <h2>Private Rooms</h2>
+    </p>
+    <div class="row">
+        <% rooms.forEach(room => { %>
+            <% if (room.passwordProtected === true) { %>
+                <div class="card ml-4 mt-4" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= room.roomName %></h5>
+                        <p class="card-text"><%= room.description %></p>
+                            <button class="btn btn-primary" onclick="togglePasswordInput('<%= room._id %>')">Join</button>
+                            <form action="/room/<%= room._id %>/join" method="POST" style="display: none;" id="form_<%= room._id %>">
+                                <div class="form-group">
+                                    <label for="password">Enter Password:</label>
+                                    <input type="password" class="form-control" id="password" name="password" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Join</button>
+                            </form>
+                    </div>
+                </div>
+            <% } %>    
+        <% }) %>
+    </div>
+
+  <script>
+    function togglePasswordInput(roomId) {
+      const form = document.getElementById(`form_${roomId}`);
+      form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    }
+  
+    function joinRoom(roomId) {
+      // You can redirect the user to the appropriate route for non-password-protected rooms
+      const redirectUrl = `/room/${roomId}/join`;
+      window.location.href = redirectUrl;
+    }
+  </script>
+  
+      
+    <!-- <script src="./script.js" type="module"></script> -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            // Handle checkbox change event
+            $('#flexSwitchCheckDefault').change(function () {
+                if (this.checked) {
+                    $('#conditionalInput').show(); // Show the input when checkbox is checked
+                } else {
+                    $('#conditionalInput').hide(); // Hide the input when checkbox is unchecked
+                }
+            });
+        });
+    </script>
+</body>
+</html>

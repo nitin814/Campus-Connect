@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Welcomes</title>
+
+  <link rel="stylesheet" href="/stylesheets/style.css">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1,
+        maximum-scale=1" />
+  <!-- Link Swiper's CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <!-- Demo styles -->
+  <style>
+    body {
+      background: #bfd3cf !important;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color: #000;
+      margin: 0;
+      padding: 0;
+    }
+
+    .swiper {
+      width: 100%;
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
+
+    .swiper-slide {
+      background-position: center;
+      background-size: cover;
+      width: 400px;
+      height: 500px;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .swiper-slide-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0); /* Initial transparent background */
+      transition: background 0.3s ease; /* Transition effect for smooth change */
+      pointer-events: none; /* Allow underlying elements to be clickable */
+    }
+  </style>
+</head>
+
+<body>
+  <div class="navbar">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand pp" href="./home.html">Meet Now</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link pp" href="#">Know More <span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+        <% if (user) { %>
+          <span class="welcome"> Hey there , <%= user.username %> ! Welcome.</span>
+          <img src="<%= user.profilephoto %>" alt="Clickable Image" class="clickable-image circular-image" style="cursor: pointer;">
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Happy to have you here, <%= user.username %>! Welcome</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p> @<%= user.email %></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <form class="form-inline my-2 my-lg-0" action="/auth/logout">
+            <button class="btn btn-outline-success btn-lg my-2 my-sm-4 custom-button" onclick="" type="submit">Logout</button>
+          </form>
+
+        <% }  else { %>
+          <form class="form-inline my-2 my-lg-0" action="/auth/google">
+            <button class="btn btn-outline-success btn-lg my-2 my-sm-4 custom-button" onclick="" type="submit">Login</button>
+          </form>
+          <% } %>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Swiper -->
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <div class="team-box team-box1">
+          <div class="team-name">
+            <center>
+              <div class="team-content">
+                <h2>1</h2>
+                <p>One - to - one Connection , write something about this </p>
+                <% if (user) { %>
+                  <a href="/profile/one_one" class="btn btn-secondary btn-lg active custom-link btn-dark" role="button" aria-pressed="true">Explore</a>
+                <% } %>
+              </div>
+            </center>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="team-box team-box2">
+          <div class="team-name">
+            <center>
+              <div class="team-content">
+                <h2>2</h2>
+               <p>Stranger One-One , write something about this </p>
+                <% if (user) { %>
+                  <a href="/profile/stranger" class="btn btn-secondary btn-lg active custom-link btn-dark" role="button" aria-pressed="true">Explore</a>
+                <% } %>
+              </div>
+            </center>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="team-box team-box3">
+          <div class="team-name">
+            <center>
+              <div class="team-content">
+                <h2>3</h2>
+                <p>Room server - functionality , write something about this </p>
+                <% if (user) { %>
+                  <a href="/room" class="btn btn-secondary btn-lg active custom-link btn-dark" role="button" aria-pressed="true">Explore</a>
+                <% } %>
+              </div>
+            </center>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="team-box team-box4">
+          <div class="team-name">
+            <center>
+              <div class="team-content">
+                <h2>4</h2>
+                <p>Comming Soon !!!</p>
+              </div>
+            </center>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="team-box team-box5">
+          <div class="team-name">
+            <center>
+              <div class="team-content">
+                <h2>5</h2>
+                <p>Comming Soon !!!</p>
+              </div>
+            </center>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+  <!-- Initialize Swiper -->
+  <script>
+
+    var swiper = new Swiper(".mySwiper", {
+      effect: "coverflow",
+      grabCursor: true,
+      centeredSlides: true,
+      loop: true,
+      autoplay: {
+        delay: 10000, // Set the delay to 10 seconds
+        disableOnInteraction: false,
+      },
+      slidesPerView: "auto",
+      coverflowEffect: {
+        rotate: 50,
+        stretch: -100,
+        depth: 500,
+        modifier: 1,
+        slideShadows: true,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+      },
+      on: {
+        slideChangeTransitionStart: function () {
+          document.querySelectorAll('.team-content .btn').forEach(function (btn) {
+          btn.style.display = 'none';
+        });
+          // Reset overlay background for all slides
+          document.querySelectorAll('.swiper-slide-overlay').forEach(function (overlay) {
+            overlay.style.background = 'rgba(25,25,25, 0)';
+          });
+
+          // Set overlay background for the active slide
+          var activeOverlay = document.querySelector('.swiper-slide-active .swiper-slide-overlay');
+          if (activeOverlay) {
+            activeOverlay.style.background = 'rgba(25 ,25,25, 0)';
+          }
+        },
+        slideChangeTransitionEnd: function () {
+          // Gradually increase transparency for the previous slide's overlay
+          var activeSlide = document.querySelector('.swiper-slide-active .team-content .btn');
+        if (activeSlide) {
+          activeSlide.style.display = 'block';
+        }
+
+          var previousOverlay = document.querySelector('.swiper-slide-prev .swiper-slide-overlay');
+          if (previousOverlay) {
+            previousOverlay.style.background = 'rgba(25, 25, 25, 0.7)';
+          }
+        },
+      },
+    });
+
+    // Variables to track touch movement
+    var touchStartX;
+
+    document.addEventListener("keyup", function (event) {
+      // Check if the pressed key is the right arrow key (key code 39)
+      if (event.keyCode === 39) {
+        // Go to the next slide
+        swiper.slideNext();
+      }
+      // Check if the pressed key is the left arrow key (key code 37)
+      else if (event.keyCode === 37) {
+        // Go to the previous slide
+        swiper.slidePrev();
+      }
+    });
+    // Add event listeners for mouse clicks and movements
+    document.addEventListener("mousedown", function (event) {
+      isMouseDown = true;
+      startX = event.clientX;
+    });
+
+    document.addEventListener("mousemove", function (event) {
+      /* if (isMouseDown) {
+        var currentX = event.clientX;
+        var deltaX = currentX - startX;
+
+        // Adjust the sensitivity based on your preference
+        if (deltaX > 40) {
+          // Move to the next slide on mouse movement to the right
+          swiper.slideNext();
+        } else if (deltaX < -40) {
+          // Move to the previous slide on mouse movement to the left
+          swiper.slidePrev();
+        }
+      }*/
+    });
+
+    document.addEventListener("mouseup", function () {
+      isMouseDown = false;
+    });
+
+    // Add event listener for wheel event (two-finger swipe on laptop)
+    document.addEventListener("wheel", function (event) {
+      // Check if the user is scrolling horizontally
+      if (event.deltaX !== 0) {
+        // Adjust the sensitivity based on your preference
+        if (event.deltaX > 0) {
+          // Move to the next slide on horizontal scroll to the right
+          swiper.slideNext();
+        } else {
+          // Move to the previous slide on horizontal scroll to the left
+          swiper.slidePrev();
+        }
+      }
+    });
+  </script>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script>
+  $(document).ready(function () {
+    $(".clickable-image").click(function () {
+      $("#exampleModal").modal("show");
+    });
+  });
+</script>
+
+<script>
+  function toggleClass() {
+    var button = document.getElementById('toggleButton');
+    if (user) {
+      button.classList.add('active-button');
+    } else {
+      button.classList.remove('active-button');
+    }
+  }
+</script>
+
+
+</body>
+</html>
